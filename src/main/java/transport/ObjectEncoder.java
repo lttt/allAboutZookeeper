@@ -1,6 +1,8 @@
 package transport;
 
+import message.Message;
+
 public interface ObjectEncoder {
-	public String encode(Object object, Class<?> clz);
+	public Message encode(Object object, Class<?> clz);
 
 }
