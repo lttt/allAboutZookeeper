@@ -1,6 +1,6 @@
 package protocal;
 
-import message.Message;
+import message.Request;
 
 public interface Client {
 
@@ -10,11 +10,11 @@ public interface Client {
 	public void connect(String ip);
 
 	/**
-	 * 接受数据
+	 * 发送数据
 	 * 
 	 * @return
 	 */
-	public void sendData(Message message);
+	public void sendData(Request request);
 
 	/**
 	 * 关闭服务

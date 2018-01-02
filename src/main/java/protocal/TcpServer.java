@@ -7,21 +7,28 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import message.Message;
+import message.Response;
 
 public class TcpServer implements Server {
 
 	private ServerSocket server;  
+	private Socket connection;
 	private ExecutorService pool=Executors.newFixedThreadPool(50);
 
-	public void start() {
+	public void start()  {
+		try {
+			connection = server.accept();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
-	public Message revieceData() {
+	public Response revieceData() {
 		try {
-			Socket socket = server.accept();
-			InputStream inputStream = socket.getInputStream();
+			
+			InputStream inputStream = connection.getInputStream();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

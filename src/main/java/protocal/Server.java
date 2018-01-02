@@ -1,6 +1,6 @@
 package protocal;
 
-import message.Message;
+import message.Response;
 
 public interface Server {
 	
@@ -12,7 +12,7 @@ public interface Server {
 	 * 接受数据
 	 * @return
 	 */
-	public Message revieceData();
+	public Response revieceData();
 	/**
 	 * 关闭服务
 	 */
