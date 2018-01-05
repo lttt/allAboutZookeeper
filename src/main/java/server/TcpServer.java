@@ -1,4 +1,4 @@
-package protocal;
+package server;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +27,7 @@ public class TcpServer implements Server {
 
 	public Response revieceData() {
 		try {
-			
+			connection = server.accept();
 			InputStream inputStream = connection.getInputStream();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

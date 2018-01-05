@@ -1,29 +1,26 @@
 package executor;
 
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.Socket;
+import java.util.concurrent.Callable;
 
-public class DsfTread implements Runnable {
+public class DsfTread implements Callable {
 
-	private Socket connection;
+	private Socket Connection;
 
-	public Socket getConnection() {
-		return connection;
-	}
+
 
 	public void setConnection(Socket connection) {
-		this.connection = connection;
+		Connection = connection;
 	}
 
-	public void run() {
-		try {
-
-			InputStream inputStream = connection.getInputStream();
-		} catch (IOException e) {
-
-		}
-
+	public Object call() throws Exception {
+		
+			Writer out =new OutputStreamWriter (Connection.getOutputStream());
+		
+		return null;
 	}
 
 }

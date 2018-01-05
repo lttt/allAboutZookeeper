@@ -1,4 +1,4 @@
-package protocal;
+package server;
 
 import message.Response;
 

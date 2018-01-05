@@ -1,4 +1,4 @@
-package protocal;
+package client;
 
 import message.Request;
 
