@@ -46,5 +46,5 @@ public class TcpRequest implements Request {
 	public void setRequestObject(Object requestObject) {
 		this.requestObject = requestObject;
 	}
-
+//TODO 根据反射调用本地借口
 }
