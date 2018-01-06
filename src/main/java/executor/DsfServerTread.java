@@ -1,18 +1,14 @@
 package executor;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.Callable;
 
 import message.Request;
+import server.CallNative;
 
-public class DsfTread implements Callable {
+public class DsfServerTread implements Runnable {
 
 	private Socket Connection;
 
@@ -20,8 +16,7 @@ public class DsfTread implements Callable {
 		Connection = connection;
 	}
 
-	public Object call() throws Exception {
-
+	public void run() {
 		// BufferedReader in = new BufferedReader(new
 		// InputStreamReader(Connection.getInputStream()));
 		// StringBuilder sb=new StringBuilder();
@@ -30,11 +25,17 @@ public class DsfTread implements Callable {
 		// {
 		// sb.append(s);
 		// }
+		try {
+			ObjectInputStream in = new ObjectInputStream(Connection.getInputStream());
+			Request request = (Request) in.readObject();
 
-		ObjectInputStream in = new ObjectInputStream(Connection.getInputStream());
-		Request request=(Request)in.readObject();;
-		return 
-				in.readObject();
+			ObjectOutputStream out = new ObjectOutputStream(Connection.getOutputStream());
+			out.writeObject(CallNative.callNative(request));
+			out.flush();
+		} catch (Exception e) {
+
+		}
+
 	}
 
 }

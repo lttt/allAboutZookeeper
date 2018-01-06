@@ -1,10 +1,22 @@
 package message;
 
-public class TcpRequest implements Request {
+import java.io.Serializable;
+
+public class TcpRequest implements Request, Serializable {
 	private String requestId;
 	private String className;
 	private String serviceName;
 	private String methodName;
+	private Class<?>[] methogParamTypes;
+
+	public Class<?>[] getMethogParamTypes() {
+		return methogParamTypes;
+	}
+
+	public void setMethogParamTypes(Class<?>[] methogParamTypes) {
+		this.methogParamTypes = methogParamTypes;
+	}
+
 	private Object requestObject;
 
 	public String getRequestId() {
@@ -46,5 +58,5 @@ public class TcpRequest implements Request {
 	public void setRequestObject(Object requestObject) {
 		this.requestObject = requestObject;
 	}
-//TODO 根据反射调用本地借口
+	// TODO 根据反射调用本地借口
 }

@@ -22,4 +22,8 @@ public interface Request {
 
 	public void setRequestObject(Object requestObject);
 
+	public Class<?>[] getMethogParamTypes();
+
+	public void setMethogParamTypes(Class<?>[] methogParamTypes);
+
 }

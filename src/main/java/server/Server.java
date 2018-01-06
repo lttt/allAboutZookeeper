@@ -1,5 +1,7 @@
 package server;
 
+import java.net.Socket;
+
 import message.Response;
 
 public interface Server {
@@ -7,12 +9,12 @@ public interface Server {
 	/**
 	 * 开启服务
 	 */
-	public void start();
+	public void start(Integer port);
 	/**
 	 * 接受数据
 	 * @return
 	 */
-	public Response revieceData();
+	public void revieceData(Socket connection);
 	/**
 	 * 关闭服务
 	 */

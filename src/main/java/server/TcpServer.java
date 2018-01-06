@@ -7,17 +7,25 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import executor.DsfServerTread;
 import message.Response;
 
 public class TcpServer implements Server {
+
+
 
 	private ServerSocket server;  
 	private Socket connection;
 	private ExecutorService pool=Executors.newFixedThreadPool(50);
 
-	public void start()  {
+	public void start(Integer port)  {
 		try {
-			connection = server.accept();
+			server=new ServerSocket(port);
+			while(true)
+			{
+				revieceData(server.accept());
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,15 +33,15 @@ public class TcpServer implements Server {
 
 	}
 
-	public Response revieceData() {
+	public void revieceData(Socket connection){
 		try {
-			connection = server.accept();
-			InputStream inputStream = connection.getInputStream();
-		} catch (IOException e) {
+			DsfServerTread serverTread=new DsfServerTread();
+			serverTread.setConnection(connection);
+			serverTread.run();
+		} catch ( Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 	public void shutdown() {
