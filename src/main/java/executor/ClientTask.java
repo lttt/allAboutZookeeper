@@ -3,11 +3,12 @@ package executor;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.concurrent.Callable;
 
 import message.Request;
 import message.Response;
 
-public class DsfClientTread {
+public class ClientTask implements Callable<Object>{
 
 	private Socket Connection;
 	

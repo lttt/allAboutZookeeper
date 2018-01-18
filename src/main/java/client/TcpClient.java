@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
-import executor.DsfClientTread;
+import executor.ClientExecutor;
+import executor.ClientTask;
 import message.Request;
 import message.Response;
 
@@ -13,37 +16,38 @@ public class TcpClient implements Client {
 
 	private Socket socket;
 
+	private ExecutorService excutor = new ClientExecutor();
+
 	public void connect(String ip, int port) {
 		try {
 			socket = new Socket(ip, port);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
 		try {
 			socket.setSoTimeout(15000);
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
 
 	}
 
-	public Response rpc(Request request) {
-		DsfClientTread clientThread = new DsfClientTread();
-		clientThread.setRequest(request);
-		clientThread.setConnection(socket);
+	public Object callRomote(Request request) {
+
+		ClientTask clientTask = new ClientTask();
+		clientTask.setRequest(request);
+		clientTask.setConnection(socket);
 		Object o = null;
 		try {
-			o = clientThread.call();
+			Future<Object> future = excutor.submit(clientTask);
+			o = future.get();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return (Response)o;
+		return o;
 
 	}
 

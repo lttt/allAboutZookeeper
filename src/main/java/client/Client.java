@@ -17,7 +17,7 @@ public interface Client {
 	 * 
 	 * @return
 	 */
-	public Response rpc(Request request);
+	public Object callRomote(Request request);
 
 	/**
 	 * 关闭服务

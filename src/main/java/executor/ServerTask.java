@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 import message.Request;
 import server.CallNative;
 
-public class DsfServerTread implements Runnable {
+public class ServerTask implements Runnable {
 
 	private Socket Connection;
 

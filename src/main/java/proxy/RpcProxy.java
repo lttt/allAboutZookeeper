@@ -20,7 +20,7 @@ public class RpcProxy  {
 		request.setMethodName(methodName);
 		request.setRequestObject(realRequest);
 		request.setServiceName(serviceName);
-		return tcp.rpc(request);
+		return tcp.callRomote(request);
 	}
 
 
