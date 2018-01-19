@@ -1,4 +1,4 @@
-package route;
+package route.strategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,15 +6,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RoundRobin {
+public class RoundRobin implements RouteStrategy{
 
 	private static Integer pos = 0;
 	
 	private static AtomicInteger count;
+	
+	private Map<String, Integer> serverMap;
 
-	public static String getServer() {
-		// 重建一个Map，避免服务器的上下线导致的并发问题
-		Map<String, Integer> serverMap = new HashMap<String, Integer>();
+	public  String getServerAddress( ) {
+		
 
 		// 取得Ip地址List
 		Set<String> keySet = serverMap.keySet();
@@ -38,4 +39,11 @@ public class RoundRobin {
 
 		return server;
 	}
+
+	public void setServerMap(Map<String, Integer> serverMap) {
+		this.serverMap=serverMap;
+		
+	}
+
+	
 }
