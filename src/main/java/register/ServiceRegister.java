@@ -1,9 +1,11 @@
 package register;
 
+import register.bean.ServerInfo;
+
 public interface ServiceRegister {
 	
-	public void registerService(String data);
+	public ServerInfo registerService(String ip,Integer port);
 	
-	public void unRegisterService(String data);
+	public void unRegisterService(ServerInfo node);
 
 }

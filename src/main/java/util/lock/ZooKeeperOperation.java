@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.zookeeper.recipes.lock;
+package util.lock;
 
 import org.apache.zookeeper.KeeperException;
 
